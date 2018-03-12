@@ -33,8 +33,6 @@ class UsersController < ApplicationController
   #   render plain: "user deleted"
   # end
 
- 
-  
 
   def gen_token(user_id)
     payload = {id: user_id}
@@ -44,8 +42,8 @@ class UsersController < ApplicationController
   def create
     username = params[:username]
     password = params[:password]
-
-    new_user = User.create({
+    puts 'called' 
+    new_user = User.create!({
       password: password,
       username: username
     })
@@ -71,6 +69,8 @@ class UsersController < ApplicationController
     password = params[:password]
 
     user = User.find_from_credentials username, password
+    p 'called'
+    p user
     if user.nil?
       render json: { err: 'No User' }
     else 

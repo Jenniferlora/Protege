@@ -6,6 +6,9 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import TokenService from './services/TokenService';
+import Calendar from './components/Calendar';
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
 
 
 class App extends Component {
@@ -15,10 +18,11 @@ class App extends Component {
   // whether or not the user is logged in
 
   register(data) {
-    axios('http://localhost:3000/users/', {
+    axios('http://localhost:3000/users', {
       method: "POST",
       data
     }).then(resp => {
+      console.log('from register in App.js', resp.data)
       TokenService.save(resp.data.token)
     })
     .catch(err => console.log(`err: ${err}`));
@@ -33,7 +37,7 @@ class App extends Component {
       method: "POST",
       data
     }).then(resp => {
-
+      console.log('from login in App.js', resp.data)
       TokenService.save(resp.data.token);
     })
     .catch(err => console.log(`err: ${err}`));
@@ -44,11 +48,12 @@ class App extends Component {
   // with the token retrieved from the TokenService
   authClick(ev) {
     ev.preventDefault();
-    axios('http://localhost:3000/mentors', {
+    axios('http://localhost:3000/users', {
       headers: {
         Authorization: `Bearer ${TokenService.read()}`,
       },
-    }).then(resp => console.log(resp))
+    }).then(resp => console.log('from authClick', resp))
+  
     .catch(err => console.log(err));
   }
 
@@ -78,12 +83,14 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
+           
             <Route exact path="/register" component={(props) => (
                 <Register {...props} submit={this.register.bind(this)} />
             )} />
           <Route exact path="/login" component={(props) => (
             <Login {...props} submit={this.login.bind(this)} />
           )} />
+          
           </Switch>
         </BrowserRouter>
       </div>

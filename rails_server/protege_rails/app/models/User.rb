@@ -17,10 +17,12 @@ class User < ApplicationRecord
   def self.find_from_credentials(username, password)
     user = find_by(username: username)
     return nil unless user
+    p password
     user if user.is_password?(password)
   end
 
   def is_password?(password_attempt)
+    p "digest: #{self.password_digest}"
     BCrypt::Password.new(password_digest).is_password?(password_attempt)
   end
 
