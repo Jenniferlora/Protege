@@ -1,25 +1,23 @@
 class UsersController < ApplicationController
 
 
-# def index
-#     users = User.all
-#     render json: users
-#   end
   def index
     puts 'called'
     session[:session_token] = 3
-    render json: [1, 2, 3, 4]
+    # render json: [1, 2, 3, 4]
+
+    users = User.all
+    render json: users
   end
 
   def show
     user = User.find(params[:id])
-    render json: users
+    render json: user
   end
 
-  # def create
-  #   user = User.create!(user_params)
-  #   render json: users
-  # end
+  def create
+
+  end
 
   # def update
   #   user = User.find(params[:id])
@@ -42,12 +40,32 @@ class UsersController < ApplicationController
   def create
     username = params[:username]
     password = params[:password]
+    full_name =params[:full_name]
+    occupation = params[:occupation]
+    location = params[:location]
+    school = params[:school]
+    tags= params[:tags]
+    work = params[:work]
+    image_url = params[:image_url]
+    category = params[:category]
     puts 'called' 
     new_user = User.create!({
       password: password,
-      username: username
+      username: username,
+      full_name: full_name,
+      occupation: occupation,
+      location: location,
+      school: school,
+      tags: tags,
+      work: work,
+      image_url: image_url,
+      category: category
     })
-
+    if new_user.category === "mentor"
+      Mentor.create!({users_id: new_user.id})
+    elsif new_user.category === "mentee"
+      Mentee.create!({users_id: new_user.id})
+    end
 
     if new_user
       render json: {token: gen_token(new_user.id)}
@@ -64,6 +82,8 @@ class UsersController < ApplicationController
     end
   end
 
+
+
   def login
     username = params[:username]
     password = params[:password]
@@ -77,6 +97,15 @@ class UsersController < ApplicationController
       render json: {user: user, token: gen_token(user.id)}
     end
   end
+
+  def get_mentors_info
+    mentors = Mentor.pluck(:users_id)
+    info = mentors.map { |mentorId| User.find(params[mentorId]) }
+    render json: info
+   
+  end
+
+
    private
 
   def user_params

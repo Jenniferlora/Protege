@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import UserForm from './UserForm';
+import LoginForm from './LoginForm';
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class Login extends Component {
   onSubmit(data) {
     console.log(`handling submit: ${data}`);
     this.props.submit(data);
+
   }
 
 
@@ -18,7 +20,7 @@ export default class Login extends Component {
     return (
       <div>
         <p>I'm a login</p>
-        <UserForm submit={this.onSubmit} />
+        <LoginForm {...this.props} submit={this.onSubmit}/>
         <p><Link to="/"><button>Back Home</button></Link></p>
       </div>
     )

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: blue;
 }
 
 .App-logo {
@@ -20,6 +21,15 @@
 
 .App-intro {
   font-size: large;
+}
+form{
+  width:600px;
+  display: flex;
+  flex-direction: column;
+}
+form input{
+
+ 
 }
 
 @keyframes App-logo-spin {
