@@ -62,9 +62,15 @@ class UsersController < ApplicationController
       category: category
     })
     if new_user.category === "mentor"
-      Mentor.create!({users_id: new_user.id})
+      # Mentor.create!({users_id: new_user.id})
+      mentor = Mentor.new()
+      mentor.user = new_user
+      mentor.save
     elsif new_user.category === "mentee"
-      Mentee.create!({users_id: new_user.id})
+      # Mentee.create!({users_id: new_user.id})
+      mentee = Mentee.new()
+      mentee.user = new_user
+      mentee.save
     end
 
     if new_user
@@ -82,7 +88,11 @@ class UsersController < ApplicationController
     end
   end
 
-
+  def get_mentors_info 
+    p current_user
+    Mentor.find_by(user_id: current_user.user_id).user
+    
+  end
 
   def login
     username = params[:username]
@@ -98,12 +108,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def get_mentors_info
-    mentors = Mentor.pluck(:users_id)
-    info = mentors.map { |mentorId| User.find(params[mentorId]) }
-    render json: info
-   
-  end
 
 
    private

@@ -16,23 +16,21 @@ ActiveRecord::Schema.define(version: 20180312202533) do
   enable_extension "plpgsql"
 
   create_table "mentees", force: :cascade do |t|
-    t.bigint "users_id"
-    t.index ["users_id"], name: "index_mentees_on_users_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_mentees_on_user_id"
   end
 
   create_table "mentors", force: :cascade do |t|
-    t.bigint "users_id"
-    t.index ["users_id"], name: "index_mentors_on_users_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_mentors_on_user_id"
   end
 
   create_table "mentorships", force: :cascade do |t|
-    t.bigint "users_id"
-    t.bigint "mentors_id"
-    t.bigint "mentees_id"
+    t.bigint "mentor_id"
+    t.bigint "mentee_id"
     t.string "status"
-    t.index ["mentees_id"], name: "index_mentorships_on_mentees_id"
-    t.index ["mentors_id"], name: "index_mentorships_on_mentors_id"
-    t.index ["users_id"], name: "index_mentorships_on_users_id"
+    t.index ["mentee_id"], name: "index_mentorships_on_mentee_id"
+    t.index ["mentor_id"], name: "index_mentorships_on_mentor_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,13 +1,13 @@
 class MenteesController < ApplicationController
   # before_action :ensure_signed_in
 def index
-    mentees = Mentee.all
-    render json: mentees
+  mentees = Mentee.joins(:user)
+  render json: mentors.select("users.*,mentors.*")
   end
 
   def show
-    mentees = Mentee.find(params[:id])
-    render json: mentees
+  mentor =  Mentor.find_by(params[:user_id]).user
+  render json: mentor
   end
 
   def create
