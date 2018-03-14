@@ -10,11 +10,14 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
-        <div>I'm Home</div>
+      <div className="background">
+        <div className="login_register">
+        <h1>Protege</h1>
+          <Link to="/login"><button>Login</button></Link>
+
         <Link to="/register"><button>Register</button></Link>
-        <br />
-        <Link to="/login"><button>Login</button></Link>
+
+      </div>
       </div>
     )
   }

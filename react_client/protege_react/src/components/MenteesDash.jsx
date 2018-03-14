@@ -9,15 +9,29 @@ export default class MenteesDash extends Component {
     super(props)
 
 }
+
+componentDidMount(){
+  this.props.checkLogin
+}
   render() {
     console.log("from MenteesDashboad", this.props);
     console.log(this.props.menteesdata);
+    console.log('haiiiiii', this.props.user_data);
     return (
-      <div>
-      <h3>Mentors Dashboard</h3>
+      <div className="dashboard">
+      <h3>Mentees Dashboard</h3>
       {this.props.menteesdata.map((el,i)=>{
         return (
-          <p>{el.username}</p>
+          <div key={i} className="individuals">
+          <h4>Name: {el.full_name}</h4>
+          <div className="dashboardImage">
+           <img url="{el.image_url}" />
+            </div>
+          <p>Location:{el.location}</p>
+          <p>Career: {el.occupation}</p>
+          <p>Employer: {el.work}</p>
+
+          </div>
           )
       })}
       </div>

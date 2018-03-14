@@ -17,8 +17,9 @@ export default class Register extends Component {
     // take note how the onSubmit method is passed down to the UserForm
     // as a prop
     return (
-      <div>
-        I'm a register
+      <div className="background">
+
+       <h2>Register</h2>
         <UserForm submit={this.onSubmit} />
         
         <p><Link to="/"><button>Back Home</button></Link></p>

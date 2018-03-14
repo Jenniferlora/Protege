@@ -19,14 +19,15 @@ class App extends Component {
     super(props)
     
     this.state ={
-      user_data: '',
-      logged_in: false,
+      // user_data: '',
+      logged_in: false
     }
   
-  this.checkLogin = this.checkLogin.bind(this)
+  // this.checkLogin = this.checkLogin.bind(this)
   this.login = this.login.bind(this)
   this.authClick = this.authClick.bind(this)
   this.register = this.register.bind(this)
+  this.checkUserCategory=this.checkUserCategory.bind(this)
   // this.logout = this.logout.bind(this)
 
   }
@@ -45,8 +46,6 @@ class App extends Component {
       console.log('from register in App.js', resp.data)
       TokenService.save(resp.data.token);
       this.history.push("/login");
-
-      
     })
     .catch(err => console.log(`err: ${err}`));
   }
@@ -60,12 +59,13 @@ class App extends Component {
       method: "POST",
       data
     }).then(resp => {
-      console.log('from login in App.js', resp.data)
+      console.log('from login in App.js', resp.data.token)
       TokenService.save(resp.data.token);
       this.setState({
-        user_data:resp.data.token,
+        user_data:resp.data.user,
         logged_in:true
       })
+      this.checkUserCategory();
     })
     .catch(err => console.log(`err: ${err}`));
   }
@@ -93,13 +93,18 @@ class App extends Component {
 
   // }
 
-  checkLogin() {
-    axios('http://localhost:3000/isLoggedIn', {
-      headers: {
-        Authorization: `Bearer ${TokenService.read()}`,
-      },
-    }).then(resp => console.log(resp))
-    .catch(err => console.log(err));
+  // checkLogin() {
+  //   axios('http://localhost:3000/isLoggedIn', {
+  //     headers: {
+  //       Authorization: `Bearer ${TokenService.read()}`,
+  //     },
+  //   }).then(resp => console.log('from checkLogin', resp))
+  //   .catch(err => console.log(err));
+  // }
+
+
+  checkUserCategory(){
+    console.log('from checkUserCategory', this.state.user_data)
   }
 
 
@@ -124,7 +129,7 @@ class App extends Component {
             )} />
 
             <Route exact path="/users/dashboard" component={(props) => (
-              <Dashboard {...props} />
+              <Dashboard {...props} user_data={this.state.user_data} />
             )} />
 
             <Route exact path="users/mentors" component={Mentors} />
@@ -142,6 +147,7 @@ class App extends Component {
 export default App;
     // <div>
     //       Weird button: <button onClick={this.authClick.bind(this)}>Weird Button</button>
-    //       <p><button onClick={this.checkLogin.bind(this)}>Check If Logged In</button></p>
+    //             <p><button onClick={this.checkLogin.bind(this)}>Check If Logged In</button></p>
+
     //       <p><button onClick={this.logout.bind(this)} >Logout</button></p>
     //     </div>

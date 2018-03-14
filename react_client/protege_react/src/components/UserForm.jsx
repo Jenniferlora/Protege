@@ -43,7 +43,7 @@ export default class UserForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="form">
         <label>User Name
           <input 
             type="text" 
@@ -107,8 +107,9 @@ export default class UserForm extends Component {
             onChange={this.handleChange}
             value={this.state.tags} />
         </label>
-         <label>Category
+         <label><p>Category</p>
           <input 
+            className="radiobuttons"
             type="radio" 
             name="category" 
             onChange={this.handleChange}
@@ -117,13 +118,14 @@ export default class UserForm extends Component {
         
         
           <input 
+            className="radiobuttons"
             type="radio" 
             name="category" 
             onChange={this.handleChange}
             value="mentor" />
             mentor <br /> 
        </label>
-        <button type="submit" value="Submit">Submit</button>
+        <button type="submit" value="Submit" className="formbutton">Submit</button>
       </form>
     );
   }

@@ -54,7 +54,7 @@ export default class UserForm extends Component {
             onChange={this.handleChange}
             value={this.state.password} />
         </label>
-        <button type="submit" value="Submit">Submit</button>
+        <button className="submit_button_login" type="submit" value="Submit">Submit</button>
       </form>
     );
   }

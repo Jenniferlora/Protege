@@ -74,6 +74,7 @@ class UsersController < ApplicationController
     end
 
     if new_user
+      new_user.save
       render json: {token: gen_token(new_user.id)}
     else
       render json: {err: 'nope'}
@@ -88,11 +89,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def get_mentors_info 
-    p current_user
-    Mentor.find_by(user_id: current_user.user_id).user
-    
-  end
+  def get_category_info 
+    if current_user
+      render json: current_user.category
+    else render nothing: true, status: 401
+    end
+  end  
+
 
   def login
     username = params[:username]

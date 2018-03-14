@@ -18,10 +18,12 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        <p>I'm a login</p>
+      <div className="background">
+        <div className="loginstuff">
+        <h1>Login</h1>
         <LoginForm {...this.props} submit={this.onSubmit}/>
         <p><Link to="/"><button>Back Home</button></Link></p>
+      </div>
       </div>
     )
   }

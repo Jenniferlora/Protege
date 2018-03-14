@@ -22,14 +22,65 @@
 .App-intro {
   font-size: large;
 }
-form{
+/*form{
   width:600px;
   display: flex;
   flex-direction: column;
-}
-form input{
-
+}*/
+.dashboard{
  
+  width:50%;
+  text-align: center;
+  margin: 0 auto;
+}
+.individuals{
+  background-color: cornflowerblue;
+}
+.background{
+  background-color: cornflowerblue;
+  text-align: center;
+  height:100vh;
+}
+.login_register{
+  padding-top: 300px;
+}
+.loginstuff{
+padding-top: 200px;
+}
+.submit_button_login{
+  margin:10px;
+}
+label{
+  width:100px;
+}
+.form{
+width: 160px;
+margin: auto;
+border-radius: 5px;
+background-color: #f2f2f2;
+padding: 20px;
+}
+
+.formbutton{
+  width:150px;
+  margin: 0 auto;
+}
+.radiobuttons{
+  display: inline;
+  margin-bottom: 10px;
+}
+input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    margin:10px;
+}
+input[type=password] {
+    width: 100%;
+    box-sizing: border-box;
+    margin:10px;
+}
+label{
+  display: inline-block;
 }
 
 @keyframes App-logo-spin {
