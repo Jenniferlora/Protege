@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
-import Mentors from './components/Mentors';
+import Mentor from './components/Mentor';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
 import TokenService from './services/TokenService';
@@ -19,7 +19,7 @@ class App extends Component {
     super(props)
     
     this.state ={
-      // user_data: '',
+    
       logged_in: false
     }
   
@@ -131,9 +131,10 @@ class App extends Component {
             <Route exact path="/users/dashboard" component={(props) => (
               <Dashboard {...props} user_data={this.state.user_data} />
             )} />
-
-            <Route exact path="users/mentors" component={Mentors} />
                      
+            <Route exact path="/mentors/:id" component={(props) => (
+                       <Mentor {...props}  />
+            )} />
 
           </Switch>
         

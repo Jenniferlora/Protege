@@ -9,8 +9,11 @@ def index
 		# mentors =  Mentor.find_by(params[:user_id]).user
 
  def show
- 	mentor =  Mentor.find_by(params[:user_id]).user
- 	render json: mentor
+ 	# mentor =  Mentor.find_by(params[:user_id]).user
+ 	# render json: mentor
+
+ 	mentor = Mentor.find(params[:id]).user
+  render json: mentor
 	end
 
 

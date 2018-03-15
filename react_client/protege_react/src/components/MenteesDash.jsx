@@ -13,6 +13,22 @@ export default class MenteesDash extends Component {
 componentDidMount(){
   this.props.checkLogin
 }
+
+  getUser(data) {
+    console.log('in getUser, user is ', this.props);
+    axios(`http://localhost:3000/mentees/${this.props.user.id}`, {
+      method: "GET",
+      data
+    }).then(resp => {
+      TokenService.save(resp.data.token);
+      this.setState({ user: resp.data.user});
+      console.log("in login, user is ", this.state);
+    })
+    .catch(err => console.log(`err: ${err}`));
+  }
+
+
+
   render() {
     console.log("from MenteesDashboad", this.props);
     console.log(this.props.menteesdata);

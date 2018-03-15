@@ -70,6 +70,24 @@ export default class Dashboard extends Component {
       })
       .catch(err => console.log(err));
   }
+
+  //   getUser() {
+  //   console.log('in getUser, user is ', this.state.user_data);
+  //   axios(`http://localhost:3000/mentor/${this.state.menteesdata.id}`, {
+  //     method: "GET",
+  //   }).then(resp => {
+  //     TokenService.save(resp.data.token);
+  //     this.setState({ user: resp.data.user});
+  //     console.log("in login, user is ", this.state);
+  //   })
+  //   .catch(err => console.log(`err: ${err}`));
+  // }
+
+  checkUserCategory(){
+    console.log('from checkUserCategory', this.state.user_data)
+  }
+
+
   render() {
     console.log("from dashboard:mentorsdata", this.state.mentorsdata);
     console.log("from dashboard:menteesdata", this.state.menteesdata);

@@ -33,9 +33,10 @@ export default class MentorsDash extends Component {
     console.log(this.props.mentorsdata);
     return (
       <div className="dashboard">
-      <h3>Mentors Dashboard</h3>
+      <h3>Mentors </h3>
       {this.props.mentorsdata.map((el,i)=>{
       	return (
+         
       		<div key={i} className="individuals">
       		<h4>Name: {el.full_name}</h4>
       		<div className="dashboardImage"> 
@@ -44,8 +45,12 @@ export default class MentorsDash extends Component {
       		<p>Location:{el.location}</p>
       		<p>Career: {el.occupation}</p>
       		<p>Employer: {el.work}</p>
-
+           <Link className="user_content"
+            to={`/mentors/${el.id}`}>
+          <p> More Info</p>
+           </Link>
       		</div>
+         
       		)
       })}
       </div>

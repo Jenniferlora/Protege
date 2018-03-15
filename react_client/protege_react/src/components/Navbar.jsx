@@ -15,8 +15,9 @@ export default class Navbar extends Component {
     ev.preventDefault();
     TokenService.destroy();
     this.props.history.push("/")
-
+    
   }
+
 
 
   render() {

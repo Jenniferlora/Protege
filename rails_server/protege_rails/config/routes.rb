@@ -8,4 +8,5 @@ resources :users
 get 'isLoggedIn', :to => 'users#is_logged_in'
 post 'users/login', :to => 'users#login'
 get 'mentors-info', :to => 'users#get_category_info'
+# get 'current-user', :to => 'users#current_user'
 end
